@@ -16,6 +16,7 @@ $links = [
     $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(3) > td ')->text('publisher'),
     $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(4) > td ')->text('publication_magazine'),
     $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(5) > td > span')->text('publish_number'),
+    $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(5) > td > span.badge.badge-success.ml-2')->text('completion'),
     $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(6) > td ')->text('duration'),
 ];
 
