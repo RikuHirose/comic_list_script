@@ -18,12 +18,13 @@ $links = [
     $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(5) > td > span')->text('publish_number'),
     $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(5) > td > span.badge.badge-success.ml-2')->text('completion'),
     $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(6) > td ')->text('duration'),
+    $crawler->filter('body > div.container-fluid.container-bordered.bg-white.py-2 > div > img')->attr('src'),
 ];
 
 // var_dump($links);
 
 
-$f = fopen("./data/comics.csv", "comic_name");
+$f = fopen("./data/comics.csv", "comics");
   // 正常にファイルを開くことができていれば、書き込みます。
   if ( $f ) {
 
