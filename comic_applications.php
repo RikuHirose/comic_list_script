@@ -8,24 +8,37 @@ $file = "";
 $url = "https://manga-check.com/comics/28129";
 $crawler = $cli->request('GET',$url);
 
-$links = [
-    $crawler->filter('body > div.container-fluid.container-bordered.bg-white.py-2 > div > div > h2')->text('comic_name'),
-    
-    $crawler->filter('body > div:nth-child(6) > div:nth-child(3) > div > div > div.col-7 > h5')->text('application_name'),
-    $crawler->filter('body > div:nth-child(6) > div:nth-child(3) > img')->attr('src')
-];
+try {
+  $links['comic_name'] = $crawler->filter('body > div.container-fluid.container-bordered.bg-white.py-2 > div > div > h2')->text('comic_name');
 
-var_dump($links);
+  if('body > div:nth-child(6) > div:nth-child(3)' == true) {
+    $links['application_name'] = $crawler->filter('body > div:nth-child(6) > div:nth-child(3) > div > div > div.col-7 > h5')->text('application_name');
+    $links['application_img'] = $crawler->filter('body > div:nth-child(6) > div:nth-child(3) > img')->attr('src');
+  }
 
+  if('body > div:nth-child(6) > div:nth-child(5)' == true) {
+    $links['application_name2'] = $crawler->filter('body > div:nth-child(6) > div:nth-child(5) > div > div > div.col-7 > h5')->text('application_name');
+    $links['application_img2'] = $crawler->filter('body > div:nth-child(6) > div:nth-child(5) > img')->attr('src');
+  }  
 
-// $f = fopen("./data/comic_applications.csv", "comic_name");
-//   // 正常にファイルを開くことができていれば、書き込みます。
-//   if ( $f ) {
+  if('body > div:nth-child(6) > div:nth-child(7)' == true) {
+    $links['application_name3'] = $crawler->filter('body > div:nth-child(6) > div:nth-child(7) > div > div > div.col-7 > h5')->text('application_name');
+    $links['application_img3'] = $crawler->filter('body > div:nth-child(6) > div:nth-child(7) > img')->attr('src');
+  }  
+} catch(Exception $e) {
+  echo null;
+};
 
-//     fputcsv($f, $links);
-//   }
-//   // ファイルを閉じます。
-//   fclose($f);
+// var_dump($links);
+
+$f = fopen("./data/comic_applications.csv", "comic_app");
+  // 正常にファイルを開くことができていれば、書き込みます。
+  if ( $f ) {
+
+    fputcsv($f, $links);
+  }
+  // ファイルを閉じます。
+  fclose($f);
 
 
 
