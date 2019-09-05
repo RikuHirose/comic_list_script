@@ -3,7 +3,7 @@
 /**
  * 
  */
-class helper
+class csvHelper
 {
 
   function __construct()
@@ -49,5 +49,13 @@ class helper
     }
     // ファイルを閉じます。
     fclose($f);
+  }
+
+  /**
+  * 多次元配列をフラットな配列に
+  **/
+  public function arrayFlatten($nestedArray)
+  {
+    return iterator_to_array(new RecursiveIteratorIterator(new RecursiveArrayIterator($nestedArray)), false);
   }
 }

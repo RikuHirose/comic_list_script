@@ -1,10 +1,10 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/helper.php';
+require_once __DIR__ . '/helpers/csvHelper.php';
 
-$cli    = new Goutte\Client();
-$helper = new Helper();
+$cli       = new Goutte\Client();
+$csvHelper = new csvHelper();
 // /comics?page=1から /comics?page=567の/comics/{comics} urlを取得
 $file = "";
 
@@ -17,7 +17,7 @@ for ($i=1; $i < 568; $i++) {
   // url リスト取得
   $links = $crawler->filter('body > div.container-fluid.bg-white.py-3.mt-2 > a')->extract('href');
 
-  $helper->writeToCsv("./data/urls.csv", $links);
+  $csvHelper->writeToCsv("./data/urls.csv", $links);
 
   sleep(3);
 }
