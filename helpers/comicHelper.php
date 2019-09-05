@@ -22,6 +22,7 @@ class comicHelper
       $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(5) > td > span.badge.badge-success.ml-2')->text('completion'),
       $crawler->filter('body > div:nth-child(7) > table > tbody > tr:nth-child(6) > td ')->text('duration'),
       $crawler->filter('body > div.container-fluid.container-bordered.bg-white.py-2 > div > img')->attr('src'),
+      $crawler->filter('body > div.container-fluid.container-bordered.bg-white.py-2 > div > div > p:nth-child(3) > span.text-muted.ml-2 ')->text('rating'),
     ];
 
     return $links;
