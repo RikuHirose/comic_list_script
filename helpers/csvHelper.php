@@ -51,6 +51,19 @@ class csvHelper
     fclose($f);
   }
 
+  public function writeToAppCsv($filePath, $links)
+  {
+    $f = fopen($filePath, "a");
+    // 正常にファイルを開くことができていれば、書き込みます。
+    if ( $f ) {
+
+      fputcsv($f, $links);
+    }
+    // ファイルを閉じます。
+    fclose($f);
+  }
+
+
   /**
   * 多次元配列をフラットな配列に
   **/

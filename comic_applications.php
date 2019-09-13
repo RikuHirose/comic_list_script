@@ -1,42 +1,31 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/helpers/csvHelper.php';
+require_once __DIR__ . '/helpers/comicHelper.php';
+
 $cli = new Goutte\Client();
+$csvHelper   = new csvHelper();
+$comicHelper = new comicHelper();
 // /comics?page=1から /comics?page=567の/comics/{comics} urlを取得
 $file = "";
 
+
 $url = "https://manga-check.com/comics/28129";
+
 $crawler = $cli->request('GET',$url);
+$links   = $comicHelper->createCsvAppData($crawler);
 
-try {
-  $links[] = $crawler->filter('body > div.container-fluid.container-bordered.bg-white.py-2 > div > div > h2')->text('comic_name');
+var_dump($links);
 
-  if('body > div:nth-child(6) > div:nth-child(3)' == true) {
-    $links[] = $crawler->filter('body > div:nth-child(6) > div:nth-child(3) > div > div > div.col-7 > h5')->text('application_name');
-    $links[] = $crawler->filter('body > div:nth-child(6) > div:nth-child(3) > img')->attr('src');
-  }
+// $csvHelper->writeToAppCsv("./data/comic_applications.csv", $links);
 
-  if('body > div:nth-child(6) > div:nth-child(5)' == true) {
-    $links[] = $crawler->filter('body > div:nth-child(6) > div:nth-child(5) > div > div > div.col-7 > h5')->text('application_name');
-    $links[] = $crawler->filter('body > div:nth-child(6) > div:nth-child(5) > img')->attr('src');
-  }
+// $f = fopen("./data/comic_applications.csv", "r+");
 
-  if('body > div:nth-child(6) > div:nth-child(7)' == true) {
-    $links[] = $crawler->filter('body > div:nth-child(6) > div:nth-child(7) > div > div > div.col-7 > h5')->text('application_name');
-    $links[] = $crawler->filter('body > div:nth-child(6) > div:nth-child(7) > img')->attr('src');
-  }
-} catch(Exception $e) {
-  echo null;
-};
+// // 正常にファイルを開くことができていれば、書き込みます。
+// if ( $f ) {
 
-// var_dump($links);
-
-$f = fopen("./data/comic_applications.csv", "comic_app");
-  // 正常にファイルを開くことができていれば、書き込みます。
-  if ( $f ) {
-
-    fputcsv($f, $links);
-  }
-  // ファイルを閉じます。
-  fclose($f);
-
+//   fputcsv($f, $links);
+// }
+// // ファイルを閉じます。
+// fclose($f);
