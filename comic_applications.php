@@ -13,19 +13,11 @@ $file = "";
 
 $url = "https://manga-check.com/comics/28129";
 
-$crawler = $cli->request('GET',$url);
-$links   = $comicHelper->createCsvAppData($crawler);
+$crawler      = $cli->request('GET',$url);
+$csvAppData   = $comicHelper->createCsvAppData($crawler);
 
-var_dump($links);
+foreach ($csvAppData as $key => $data) {
 
-// $csvHelper->writeToAppCsv("./data/comic_applications.csv", $links);
+  $csvHelper->writeToCsv("./data/comic_applications.csv", $data);
 
-// $f = fopen("./data/comic_applications.csv", "r+");
-
-// // 正常にファイルを開くことができていれば、書き込みます。
-// if ( $f ) {
-
-//   fputcsv($f, $links);
-// }
-// // ファイルを閉じます。
-// fclose($f);
+}
