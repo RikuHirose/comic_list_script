@@ -173,7 +173,7 @@ class comicHelper
         ];
       }
     } catch(Exception $e) {
-      $links = null;
+      // $links = null;
     };
 
     return $links;
