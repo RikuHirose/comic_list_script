@@ -12,6 +12,8 @@ $comicHelper = new comicHelper();
 $urls    = $csvHelper->csvToArray("./data/urls.csv");
 $newUrls = $csvHelper->arrayFlatten($urls);
 
+// https://manga-check.com/comics/7720
+// table空欄あり
 
 $endPoint = "https://manga-check.com";
 
@@ -21,7 +23,6 @@ foreach ($newUrls as $key => $url) {
   $crawler = $cli->request('GET',$endPoint.$url);
   $id      = $key + 1;
   $data    = $comicHelper->createCsvData($crawler, $id);
-
   $csvHelper->writeToCsv("./data/comics.csv", $data);
 
   sleep(3);

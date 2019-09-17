@@ -4,11 +4,5 @@ require_once __DIR__ . '/helpers/csvHelper.php';
 
 $csvHelper   = new csvHelper();
 
-$sql = "SELECT * FROM comic_applications";
-
-$stmt = $dbh->query($sql);
-$data = $stmt;
-
-foreach ($data as $row) {
-    $csvHelper->writeToCsv("./data/comic_applications2.csv", $data);
-}
+// comic_applications.csvからcomic_id, application_idのcsvを作る
+// comic、applicationをdbに入れてsql検索した方が楽?
