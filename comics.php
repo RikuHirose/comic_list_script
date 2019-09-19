@@ -9,11 +9,15 @@ $csvHelper   = new csvHelper();
 $comicHelper = new comicHelper();
 
 
-$urls    = $csvHelper->csvToArray("./data/urls.csv");
+// $urls    = $csvHelper->csvToArray("./data/urls.csv");
+$urls    = $csvHelper->csvToArray("./data/urlscomic.csv");
 $newUrls = $csvHelper->arrayFlatten($urls);
 
 // https://manga-check.com/comics/7720
 // table空欄あり
+
+// https://manga-check.com/comics/84743 
+// から
 
 $endPoint = "https://manga-check.com";
 
@@ -21,7 +25,7 @@ foreach ($newUrls as $key => $url) {
   echo $endPoint.$url."のdataを書き込んでいます...\n";
 
   $crawler = $cli->request('GET',$endPoint.$url);
-  $id      = $key + 1;
+  $id      = $key + 10532;
   $data    = $comicHelper->createCsvData($crawler, $id);
   $csvHelper->writeToCsv("./data/comics.csv", $data);
 
