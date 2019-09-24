@@ -1,10 +1,10 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/helper.php';
+require_once __DIR__ . '/helpers/csvHelper.php';
 
 $cli    = new Goutte\Client();
-$helper = new Helper();
+$csvHelper = new csvHelper();
 
 /**
 **  comics.csvとcomic_applications.csvから
@@ -13,8 +13,8 @@ $helper = new Helper();
     name,img_url
 **/
 
-$comics             = $helper->csvToArray("./data/comics.csv");
-$comic_applications = $helper->csvToArray("./data/comic_applications.csv");
+$comics             = $csvHelper->csvToArray("./data/comics.csv");
+$comic_applications = $csvHelper->csvToArray("./data/comic_applications.csv");
 
 $tmp = [];
 $applications = [];
@@ -35,5 +35,5 @@ foreach ($comic_applications as $key => $application) {
 }
 
 foreach ($applications as $key => $application) {
-  $helper->writeToCsv("./data/applications.csv", $application);
+  $csvHelper->writeToCsv("./data/applications.csv", $application);
 }

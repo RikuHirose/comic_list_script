@@ -19,10 +19,10 @@ $comicHelper = new comicHelper();
 //   'https://manga-check.com/comics/70435',
 // ];
 
-https://manga-check.com/comics/80850
-から
+// https://manga-check.com/comics/15596
+// から
 
-$urls    = $csvHelper->csvToArray("./data/urls.csv");
+$urls    = $csvHelper->csvToArray("./data/urlsComicApplication.csv");
 $newUrls = $csvHelper->arrayFlatten($urls);
 
 $endPoint = "https://manga-check.com";
@@ -40,5 +40,5 @@ foreach ($newUrls as $key => $url) {
     }
   }
 
-  sleep(3);
+  sleep(1);
 }
