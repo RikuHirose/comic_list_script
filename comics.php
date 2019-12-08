@@ -13,11 +13,6 @@ $comicHelper = new comicHelper();
 $urls    = $csvHelper->csvToArray("./data/urlscomic.csv");
 $newUrls = $csvHelper->arrayFlatten($urls);
 
-// https://manga-check.com/comics/7720
-// table空欄あり
-
-// https://manga-check.com/comics/84743 
-// から
 
 $endPoint = "https://manga-check.com";
 
